@@ -58,8 +58,6 @@ namespace P8PLATFORM
     bool Wait(mutex_t &mutex);
     bool Wait(mutex_t &mutex, uint32_t iTimeoutMs);
 
-    bool                m_bOnVista;
     CONDITION_VARIABLE *m_conditionVista;
-    HANDLE              m_conditionPreVista;
   };
 }

@@ -17,6 +17,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
+#ifndef MS_APP
 #include <windows.h>
 #include <stdio.h>
 
@@ -94,6 +95,7 @@ void *dlopen( const char *file, int mode )
     UINT uMode;
 
     /* Do not let Windows display the critical-error-handler message box */
+#ifndef MS_APP
     uMode = SetErrorMode( SEM_FAILCRITICALERRORS );
 
     if( file == 0 )
@@ -113,6 +115,7 @@ void *dlopen( const char *file, int mode )
     }
     else
     {
+#endif
         char lpFileName[MAX_PATH];
         int i;
 
@@ -148,7 +151,9 @@ void *dlopen( const char *file, int mode )
 
         if( hModule && (mode & RTLD_GLOBAL) )
             global_object_add( hModule );
+#ifndef MS_APP
     }
+#endif
 
     /* Return to previous state of the error-mode bit flags. */
     SetErrorMode( uMode );
@@ -261,3 +266,4 @@ char *dlerror( void )
     return lpBuffer;
 }
 
+#endif

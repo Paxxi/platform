@@ -21,6 +21,7 @@
 #ifndef DLFCN_H
 #define DLFCN_H
 
+#ifndef MS_APP
 /* POSIX says these are implementation-defined.
  * To simplify use with Windows API, we treat them the same way.
  */
@@ -43,4 +44,5 @@ int   dlclose( void *handle );
 void *dlsym  ( void *handle, const char *name );
 char *dlerror( void );
 
+#endif
 #endif /* DLFCN-WIN32_H */

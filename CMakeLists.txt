@@ -40,6 +40,12 @@ add_library(p8-platform ${SOURCES} ${PLAT_SOURCES})
 target_link_libraries(p8-platform ${p8-platform_LIBRARIES})
 set_target_properties(p8-platform PROPERTIES VERSION ${p8-platform_VERSION_MAJOR}.${p8-platform_VERSION_MINOR}.${p8-platform_VERSION_PATCH}
                                               SOVERSION ${p8-platform_VERSION_MAJOR})
+if(WINDOWS_STORE)
+  target_compile_definitions(p8-platform
+    PRIVATE
+      MS_APP
+  )
+endif()
 
 install(TARGETS p8-platform DESTINATION ${CMAKE_INSTALL_LIBDIR})
 install(FILES src/os.h DESTINATION include/p8-platform)
